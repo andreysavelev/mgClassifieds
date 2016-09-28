@@ -1,4 +1,4 @@
-function ClassifiedController($scope, $http, classifiedFactory) {
+function ClassifiedController($scope, $http, $mdSidenav, classifiedFactory) {
 
 	classifiedFactory
 		.getClassifieds()
@@ -8,6 +8,10 @@ function ClassifiedController($scope, $http, classifiedFactory) {
 		.catch(function (error) {
 			console.error(error.message);
 		});
+
+	$scope.toggleSidenav = function () {
+		$mdSidenav('leftSidenav').toggle();
+	};
 }
 
 module.exports = ClassifiedController;
