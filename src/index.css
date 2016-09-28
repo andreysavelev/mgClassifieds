@@ -1,0 +1,12 @@
+body {
+  display: none;
+}
+
+body.initialized {
+	display: block;
+}
+
+
+.header .header-add-item:before {
+	margin-right: 5px;
+}

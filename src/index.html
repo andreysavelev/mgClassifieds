@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FountainJS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" type="image/png" href="http://fountainjs.io/assets/imgs/fountain.png" />
+  </head>
+
+  <body ng-app="classified" ng-controller="ClassifiedController" ng-init="initClassName = 'initialized'" class="{{initClassName}}" >
+    
+    <header class="header">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <p><strong>ngClassifieds</strong></p>
+
+          <md-button class="header-add-item mdi mdi-plus-circle">New Classified</md-button>
+        </div>
+      </md-toolbar>      
+    </header>
+  </body>
+</html>
