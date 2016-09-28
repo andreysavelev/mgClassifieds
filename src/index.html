@@ -15,11 +15,31 @@
         <div class="md-toolbar-tools">
           <p><strong>ngClassifieds</strong></p>
 
-          <md-button class="header-add-item mdi mdi-plus-circle">
+          <md-button class="header__add-item mdi mdi-plus-circle">
             New Classified
           </md-button>
         </div>
       </md-toolbar>      
     </header>
+
+    <main class="main-area">
+      <md-content class="md-padding" layout="row" layout-wrap>
+        <md-card flex="33" class="classified-card">
+          <img src="https://simonsmith.io/using-webpack-to-build-react-components-and-their-assets/slide2-77f9e4a8.png">
+          <md-card-content>
+            <div  class="classified-card__info">
+              <h2 class="md-title classified-card__title">First Item</h2>
+              <h3 class="classified-card__subtitle">$ 1,000,000</h2>
+              <p class="classified-card__description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </md-card-content>
+        </md-card>
+      </md-content>
+    </main>
   </body>
 </html>
