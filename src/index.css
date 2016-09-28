@@ -6,6 +6,39 @@ body.initialized {
 	display: block;
 }
 
+/** Error Block: If Image Was Broken */
+img {
+	position: relative;
+	min-height: 50px;
+}
+
+img:before {  
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	display: block;
+  	height: calc(100% + 10px);
+  	width: 100%;
+  	background-color: rgb(230, 230, 230);
+  	
+  	content: " ";
+}
+
+img:after {
+	position: absolute;
+	top: 10px;
+	left: 0;
+  	display: block;
+	width: 100%;
+  	
+  	content: "Broken image:" " " attr(alt);
+	text-align: center;  
+  	font-size: 16px;
+  	font-style: normal;
+  	font-family: FontAwesome;
+  	color: rgb(100, 100, 100);
+}
+/** End Of Error Block */
 
 .header .header__add-item:before {
 	margin-right: 5px;
