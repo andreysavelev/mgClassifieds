@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>FountainJS</title>
@@ -27,12 +27,69 @@
         <md-card flex="30" class="classified-card" ng-repeat="classified in classifieds">
           <img ng-src="{{ classified.image }}" alt="{{ classified.title }}">
           <md-card-content>
-            <div  class="classified-card__info">
+            <div  class="classified-card__info" ng-show="!showContact">
               <h2 class="md-title classified-card__title">{{ classified.title }}</h2>
               <time datetime="{{ classified.posted }}">{{ classified.posted | date }}</time>
               <h3 class="classified-card__subtitle">{{ classified.price | currency }}</h2>
               <p class="classified-card__description">{{ classified.description }}</p>
             </div>
+
+            <div class="classifed-card__contact" ng-show="showContact">
+              <p><md-icon class="mdi mdi-account"></md-icon> {{ classified.contact.name }}</p>
+              <p><md-icon class="mdi mdi-phone"></md-icon> {{ classified.contact.phone }}</p>
+              <p><md-icon class="mdi mdi-email"></md-icon> {{ classified.contact.email }}</p>
+            </div>
+
+            <!-- Show/Hide contact information -->
+            <div layout="row">
+              <!-- Show contact -->
+              <md-button 
+                ng-click="showContact = true"
+                ng-show="!showContact"
+              >
+                Contact
+              </md-button>
+
+              <!-- Details only -->
+              <md-button 
+                ng-click="showContact = false"
+                ng-show="showContact"
+              >
+                Details
+              </md-button>
+
+              <!-- Show Admin -->
+              <md-button 
+                ng-click="showAdmin = true"
+                ng-show="!showAdmin"
+              >
+                Admin
+              </md-button>
+
+              <!-- Close Admin -->
+              <md-button 
+                ng-click="showAdmin = false"
+                ng-show="showAdmin"
+              >
+                Close Admin
+              </md-button>
+            </div>
+
+            <!-- Show/Hide admin actions -->
+            <div class="classified-card__admin" ng-if="showAdmin">
+              <h3>Admin</h3>
+              <div layout="row">
+                <!-- Edit -->
+                <md-button class="md-primary">
+                  Edit
+                </md-button>
+
+                <!-- Delete -->
+                <md-button class="md-warn">
+                  Delete
+                </md-button>
+              </div>
+            </div>            
           </md-card-content>
         </md-card>
       </md-content>
