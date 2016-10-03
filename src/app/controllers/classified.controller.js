@@ -18,6 +18,7 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		$mdSidenav('leftSidenav').toggle();
 	};
 
+	// Add new classified item
 	$scope.saveClassified = function (classifiedItem) {
 		if (classifiedItem) {
 			classifiedItem.contact = oFakeContact;
@@ -36,6 +37,13 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 
 		$scope.toggleSidenav();
 	};
+
+	// Edit existing classified item
+	$scope.editClassified = function (a, b, c) {
+		console.log("a", a);
+		console.log("b", b);
+		console.log("c", c);
+	}
 }
 
 module.exports = ClassifiedController;
