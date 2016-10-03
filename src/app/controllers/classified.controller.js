@@ -62,8 +62,14 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		// Clear form fields
 		$scope.classified = {};
 		$scope.closeSidenav();
-		
+
 		showToastMessage('Edited classified saved');
+	};
+
+
+	$scope.deleteClassified = function (classified) {
+		var nIndex = $scope.classifieds.indexOf(classified);
+		$scope.classifieds.splice(nIndex, 1);
 	}
 }
 
