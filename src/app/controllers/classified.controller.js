@@ -1,4 +1,13 @@
 function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFactory) {
+	function showToastMessage (sMessage) {
+		$mdToast.show(
+			$mdToast.simple()
+				.content(sMessage)
+				.position('top, right')
+				.hideDelay(3000)
+		);
+	};
+
 	var oFakeContact = {
 		name: "Andrey Savelev",
 		phone: "(555) 555-55-55",
@@ -31,30 +40,30 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		if (classifiedItem) {
 			classifiedItem.contact = oFakeContact;
 			$scope.classifieds.push(classifiedItem);
-
-			$mdToast.show(
-				$mdToast.simple()
-					.content('Classified ' + classifiedItem.title + ' saved!')
-					.position('top, right')
-					.hideDelay(3000)
-			);
-
 			// Clear form fields
 			$scope.classified = {};
+			$scope.toggleSidenav();
+			showToastMessage('Classified ' + classifiedItem.title + ' saved!');
 		}
 
-		$scope.toggleSidenav();
 	};
 
 	// Edit existing classified item
 	$scope.editClassified = function (classified) {
+		$scope.edititng = true;
 		$scope.classified = classified;
+		
 		$scope.openSidenav();
 	};
 
 	// Save edited classified item
-	$scope.saveEditedClassified = function (editedClassified) {
+	$scope.saveEditedClassified = function () {
+		$scope.edititng = false;
+		// Clear form fields
+		$scope.classified = {};
+		$scope.closeSidenav();
 		
+		showToastMessage('Edited classified saved');
 	}
 }
 
