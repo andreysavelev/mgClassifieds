@@ -135,10 +135,10 @@
             <input type="text" id="image"
                   ng-model="classified.image">
           </md-input-container>
-          <md-button ng-if="!editing" ng-click="saveClassified(classified)" class="md-primary">
+          <md-button ng-click="saveClassified(classified)" class="md-primary">
             Save
           </md-button>
-          <md-button ng-if="editing" ng-click="saveEdit()" class="md-primary">
+          <md-button class="md-primary">
             Save Edit
           </md-button>
           <md-button ng-click="toggleSidenav()" class="md-warn">
