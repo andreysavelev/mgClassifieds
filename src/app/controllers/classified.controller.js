@@ -18,6 +18,14 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		$mdSidenav('leftSidenav').toggle();
 	};
 
+	$scope.openSidenav = function () {
+		$mdSidenav('leftSidenav').open();	
+	};
+
+	$scope.closeSidenav = function () {
+		$mdSidenav('leftSidenav').close();
+	};
+
 	// Add new classified item
 	$scope.saveClassified = function (classifiedItem) {
 		if (classifiedItem) {
@@ -39,10 +47,14 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 	};
 
 	// Edit existing classified item
-	$scope.editClassified = function (a, b, c) {
-		console.log("a", a);
-		console.log("b", b);
-		console.log("c", c);
+	$scope.editClassified = function (classified) {
+		$scope.classified = classified;
+		$scope.openSidenav();
+	};
+
+	// Save edited classified item
+	$scope.saveEditedClassified = function (editedClassified) {
+		
 	}
 }
 
