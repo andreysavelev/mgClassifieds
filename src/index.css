@@ -40,6 +40,6 @@ img:after {
 }
 /** End Of Error Block */
 
-.header .header__add-item:before {
+.header .header__button:before {
 	margin-right: 5px;
 }
