@@ -43,3 +43,25 @@ img:after {
 .header .header__button:before {
 	margin-right: 5px;
 }
+
+/* Animation of classified card item */
+.classified-card.ng-enter,
+.classified-card.ng-move {
+	opacity: 0;
+	transition: 0.4s all;
+}
+
+.classified-card.ng-enter.ng-enter-active,
+.classified-card.ng-move.ng-enter-active {
+	opacity: 1;
+}
+
+.classified-card.ng-leave {
+	animation: .4s fade_classified;
+}
+
+@keyframes fade_classified {
+	from { opacity: 1; }
+	to { opacity: 0; }
+}
+/* END of Animation of classified card item */
