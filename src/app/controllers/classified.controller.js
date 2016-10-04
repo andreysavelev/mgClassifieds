@@ -38,6 +38,8 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 			console.error(error.message);
 		});
 
+	$scope.showFilters = false;
+
 	$scope.toggleSidenav = function () {
 		$mdSidenav('leftSidenav').toggle();
 	};
@@ -85,7 +87,18 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 	$scope.deleteClassified = function (classified) {
 		var nIndex = $scope.classifieds.indexOf(classified);
 		$scope.classifieds.splice(nIndex, 1);
-	}
+	};
+
+	// Show/Hide Filters 
+	$scope.toggleFilters = function () {
+		$scope.showFilters = !$scope.showFilters;
+	};
+
+	// Clear all filters
+	$scope.clearFilters = function () {
+		$scope.classifiedsFilter = '';
+		$scope.category = '';
+	};
 }
 
 module.exports = ClassifiedController;

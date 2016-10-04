@@ -25,7 +25,7 @@
           <!-- Show filter field -->
           <md-button 
             class="header__button mdi mdi-magnify"
-            ng-click="showFilters = true"
+            ng-click="toggleFilters()"
           >
             Filters
           </md-button>
@@ -35,21 +35,23 @@
 
     <!-- Filters -->
     <div class="main-area__filters" layout="row" layout-align="center center" ng-show="showFilters">
-      <md-input-container>
-        <label for="searchCommon">Enter Search Term</label>
-        <input type="text" id="searchCommon" ng-model="classifiedsFilter">
+      <md-input-container layout="row">
+        <label>Enter Search Term</label>
+        <input type="text" ng-model="classifiedsFilter">
       </md-input-container>
 
-      <md-input-container>
+      <md-input-container layout="row">
         <label>Filter Category</label>
         <md-select ng-model="category">
-          <md-option ng-repeat="category in categories" ng-if="category !== null" value="{{ category }}">
-            {{ category }}
-          </md-option>
+          <md-option ng-repeat="category in categories" ng-if="category !== null" value="{{ category }}">{{ category }}</md-option>
         </md-select>
       </md-input-container>
+
+      <div layout="row">
+        <md-button ng-click="clearFilters()" class="md-warn">Clear</md-button>
+      </div>
     </div>
-    
+
     <main class="main-area">
       <!-- Content -->
       <md-content class="md-padding" layout="row" layout-wrap>
