@@ -66,7 +66,7 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		showToastMessage('Edited classified saved');
 	};
 
-
+	// Delete classified item
 	$scope.deleteClassified = function (classified) {
 		var nIndex = $scope.classifieds.indexOf(classified);
 		$scope.classifieds.splice(nIndex, 1);
