@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFactory) {
 	function showToastMessage (sMessage) {
 		$mdToast.show(
@@ -6,7 +8,19 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 				.position('top, right')
 				.hideDelay(3000)
 		);
-	};
+	}
+
+	function getCategories(classifieds) {
+		var categories = [];
+
+		classifieds.forEach(function (classified) {
+			classified.categories.forEach(function (category) {
+				categories.push(category);
+			});
+		});
+
+		return _.uniq(categories);
+	}
 
 	var oFakeContact = {
 		name: "Andrey Savelev",
@@ -18,6 +32,7 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 		.getClassifieds()
 		.then(function (responce) {
 			$scope.classifieds = responce.data;
+			$scope.categories = getCategories($scope.classifieds);
 		})
 		.catch(function (error) {
 			console.error(error.message);
