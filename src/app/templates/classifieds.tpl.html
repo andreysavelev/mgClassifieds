@@ -1,0 +1,128 @@
+<header class="header">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h1>ngClassifieds</strong></h1>
+
+      <md-button 
+        class="header__button mdi mdi-plus-circle"
+        ng-click="vm.openSidenav()"
+      >
+        New Classified
+      </md-button>
+
+      <!-- Show filter field -->
+      <md-button 
+        class="header__button mdi mdi-magnify"
+        ng-click="vm.toggleFilters()"
+      >
+        Filters
+      </md-button>
+    </div>
+  </md-toolbar>      
+</header>
+
+<!-- Filters -->
+<div class="main-area__filters" layout="row" layout-align="center center" ng-show="vm.showFilters">
+  <md-input-container layout="row">
+    <label>Enter Search Term</label>
+    <input type="text" ng-model="vm.classifiedsFilter">
+  </md-input-container>
+
+  <md-input-container layout="row">
+    <label>Filter Category</label>
+    <md-select ng-model="vm.category">
+      <md-option ng-repeat="category in vm.categories" ng-if="category !== null" value="{{ category }}">{{ category }}</md-option>
+    </md-select>
+  </md-input-container>
+
+  <div layout="row">
+    <md-button ng-click="vm.clearFilters()" class="md-warn">Clear</md-button>
+  </div>
+</div>
+
+<main class="main-area">
+  <!-- Content -->
+  <md-content class="md-padding" layout="row" layout-wrap>
+    <md-card flex="30" class="classified-card" ng-repeat="classified in vm.classifieds | 
+                                                          filter: vm.classifiedsFilter |
+                                                          filter: vm.category">
+      <img ng-src="{{ classified.image }}" alt="{{ classified.title }}">
+      <md-card-content>
+
+        <!-- Main card content -->
+        <div  class="classified-card__info" ng-show="!showContact">
+          <h2 class="md-title classified-card__title">{{ classified.title }}</h2>
+          <time datetime="{{ classified.posted }}">{{ classified.posted | date }}</time>
+          <h3 class="classified-card__subtitle">{{ classified.price | currency }}</h2>
+          <p class="classified-card__description">{{ classified.description }}</p>
+        </div>
+        <!-- End of Main card content -->
+
+        <!-- Contacts -->
+        <div class="classifed-card__contact" ng-show="showContact">
+          <p><md-icon class="mdi mdi-account"></md-icon> {{ classified.contact.name }}</p>
+          <p><md-icon class="mdi mdi-phone"></md-icon> {{ classified.contact.phone }}</p>
+          <p><md-icon class="mdi mdi-email"></md-icon> {{ classified.contact.email }}</p>
+        </div>
+        <!-- End Of Contacts -->
+
+        <!-- Show/Hide contact information -->
+        <div layout="row">
+          <!-- Show contact -->
+          <md-button 
+            ng-click="showContact = true"
+            ng-show="!showContact"
+          >
+            Contact
+          </md-button>
+
+          <!-- Details only -->
+          <md-button 
+            ng-click="showContact = false"
+            ng-show="showContact"
+          >
+            Details
+          </md-button>
+
+          <!-- Show Admin -->
+          <md-button 
+            ng-click="showAdmin = true"
+            ng-show="!showAdmin"
+          >
+            Admin
+          </md-button>
+
+          <!-- Close Admin -->
+          <md-button 
+            ng-click="showAdmin = false"
+            ng-show="showAdmin"
+          >
+            Close Admin
+          </md-button>
+        </div>
+
+        <!-- Show/Hide admin actions -->
+        <div class="classified-card__admin" ng-if="showAdmin">
+          <h3>Admin</h3>
+          <div layout="row">
+            <!-- Edit -->
+            <md-button class="md-primary"
+                        ng-click="vm.editClassified(classified)"
+            >
+              Edit
+            </md-button>
+
+            <!-- Delete -->
+            <md-button ng-click="vm.deleteClassified(classified)" class="md-warn">
+              Delete
+            </md-button>
+          </div>
+        </div>            
+      </md-card-content>
+    </md-card>
+  </md-content>
+</main>
+
+<!-- Sidenav -->
+<ui-view></ui-view>
+<!-- End of Sidenav -->
