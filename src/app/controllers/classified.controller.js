@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFactory) {
+function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, classifiedFactory) {
 	var vm = this;
 
 	var oFakeContact = {
@@ -33,12 +33,8 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 	}
 
 	// Main Logic
-	function toggleSidenav() {
-		$mdSidenav('leftSidenav').toggle();
-	}
-
 	function openSidenav() {
-		$mdSidenav('leftSidenav').open();	
+		$state.go('classifieds.new');	
 	}
 
 	function closeSidenav() {
@@ -100,7 +96,6 @@ function ClassifiedController($scope, $http, $mdSidenav, $mdToast, classifiedFac
 	// Public API
 
 	// Methods
-	vm.toggleSidenav = toggleSidenav;
 	vm.openSidenav = openSidenav;
 	vm.closeSidenav = closeSidenav;
 	vm.saveClassified = saveClassified;
