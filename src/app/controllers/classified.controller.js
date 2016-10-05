@@ -44,6 +44,7 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 	function saveClassified(classifiedItem) {
 		if (classifiedItem) {
 			classifiedItem.contact = oFakeContact;
+			classifiedItem.id = vm.classifieds.length + 1;
 			vm.classifieds.push(classifiedItem);
 			// Clear form fields
 			vm.classified = {};
