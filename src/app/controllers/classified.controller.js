@@ -53,18 +53,13 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 	}
 
 	function editClassified(classified) {
-		vm.edititng = true;
-		vm.classified = classified;
-		
-		openSidenav();
+		$state.go('classifieds.edit', {
+			id: classified.id,
+			classified: classified
+		});
 	}
 
 	function saveEditedClassified() {
-		vm.edititng = false;
-		// Clear form fields
-		vm.classified = {};
-		closeSidenav();
-
 		showToastMessage('Edited classified saved');
 	}
 
@@ -94,7 +89,11 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 
 	$scope.$on('newClassified', (event, data) => {
 		saveClassified(data);
-	})
+	});
+
+	$scope.$on('editClassified', (event, message) => {
+		showToastMessage(message);
+	});
 
 
 	// Public API

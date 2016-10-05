@@ -15,6 +15,14 @@ function materialConfig($mdThemingProvider, $stateProvider) {
 			template: require('../templates/classifieds.new.tpl.html'),
 			controller: 'NewClassifiedsController as vm'
 		})
+		.state('classifieds.edit', {
+			url: '/edit/:id',
+			template: require('../templates/classifieds.edit.tpl.html'),
+			controller: 'EditClassifiedsController as vm',
+			params: {
+				classified: null
+			}
+		})
 }
 
 module.exports = materialConfig;
