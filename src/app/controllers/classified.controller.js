@@ -47,7 +47,6 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 			vm.classifieds.push(classifiedItem);
 			// Clear form fields
 			vm.classified = {};
-			toggleSidenav();
 			showToastMessage('Classified ' + classifiedItem.title + ' saved!');
 		}
 	}
@@ -91,6 +90,10 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		.catch(function (error) {
 			console.error(error.message);
 		});
+
+	$scope.$on('newClassified', (event, data) => {
+		saveClassified(data);
+	})
 
 
 	// Public API
