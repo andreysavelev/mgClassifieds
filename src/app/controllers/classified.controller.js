@@ -37,9 +37,11 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		var categories = [];
 
 		classifieds.forEach(function (classified) {
-			classified.categories.forEach(function (category) {
-				categories.push(category);
-			});
+			if (classified.categories) {
+				classified.categories.forEach(category => {
+					categories.push(category);
+				});
+			}
 		});
 
 		return _.uniq(categories);
@@ -57,8 +59,9 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 	function saveClassified(classifiedItem) {
 		if (classifiedItem) {
 			classifiedItem.contact = oFakeContact;
-			classifiedItem.id = vm.classifieds.length + 1;
-			vm.classifieds.push(classifiedItem);
+
+			vm.classifieds.$add(classifiedItem);
+			
 			// Clear form fields
 			vm.classified = {};
 			showToastMessage('Classified ' + classifiedItem.title + ' saved!');
@@ -67,8 +70,7 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 
 	function editClassified(classified) {
 		$state.go('classifieds.edit', {
-			id: classified.id,
-			classified: classified
+			id: classified.$id
 		});
 	}
 
@@ -89,16 +91,6 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		vm.classifiedsFilter = '';
 		vm.category = '';
 	}
-
-	// classifiedFactory
-	// 	.getClassifieds()
-	// 	.then(function (responce) {
-	// 		vm.classifieds = responce.data;
-	// 		vm.categories = getCategories(vm.classifieds);
-	// 	})
-	// 	.catch(function (error) {
-	// 		console.error(error.message);
-	// 	});
 
 	$scope.$on('newClassified', (event, data) => {
 		saveClassified(data);
