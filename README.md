@@ -3,7 +3,7 @@ ngClassifieds!
 
 This application based on Angular 1.5
 
-First you need install dependencies:
+First you need to install dependencies:
 
 ``` bash
 $ npm install
