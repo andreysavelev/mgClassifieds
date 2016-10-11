@@ -1,10 +1,19 @@
-function materialConfig($mdThemingProvider, $stateProvider) {
+function materialConfig($mdThemingProvider, $stateProvider, $urlRouterProvider) {
 	$mdThemingProvider.theme('default')
 					.primaryPalette('teal')
 					.accentPalette('orange');
 
 	// Routing
+	// default route
+	$urlRouterProvider.otherwise('/')
+	
+	// settings for routes
 	$stateProvider
+		.state('index', {
+			url: '/',
+			template: require('../templates/index.tpl.html'),
+			controller: 'IndexController as vm'
+		})
 		.state('classifieds', {
 			url: '/classifieds',
 			template: require('../templates/classifieds.tpl.html'),

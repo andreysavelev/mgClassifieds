@@ -1,0 +1,35 @@
+<md-toolbar class="md-hue-2">
+	<div class="md-toolbar-tools">	    
+	    <h1>
+	      	<span>{{ vm.title }}</span>
+	    </h1>
+  	</div>
+</md-toolbar>
+
+<main class="main-area">
+	<!-- Content -->
+  <md-content class="md-padding" layout="row" layout-wrap>
+  	
+  	<md-card flex="30" class="index-card" ng-repeat="index in vm.indexItems">
+  	  <md-card-content>
+
+  	    <!-- Main card content -->
+  	    <div  class="index-card__info">
+  	      <h2 class="md-title index-card__title">{{ index.title }}</h2>
+  	      <time datetime="{{ index.posted }}">{{ index.posted | date }}</time>
+  	      <h3 class="index-card__subtitle">{{ index.price | currency }}</h2>
+  	      <p class="index-card__description">{{ index.description }}</p>
+  	    </div>
+  	    <!-- End of Main card content --> 
+
+  	    <!-- Show/Hide contact information -->
+  	    <div layout="row">
+  	      <!-- action -->
+  	      <md-button ng-click="vm.onIndexButton(index.linkPath)">
+  	        {{index.linkTitle}}
+  	      </md-button>
+  	    </div> 
+  	  </md-card-content>
+  	</md-card>
+  </md-content>
+</main>
