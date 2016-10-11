@@ -9,6 +9,19 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		email: "savelevcorr@gmail.com"
 	};
 
+	const FIREBASE = classifiedFactory.base;
+	
+	classifiedFactory.auth()
+		.signInWithEmailAndPassword('tuyesize@cartelera.org', 's9020666')
+		.then(user => {
+			vm.classifieds = FIREBASE;
+			vm.classifieds.$loaded(classifieds => {
+				vm.categories = getCategories(classifieds);
+			});
+		})
+		.catch(error => {
+			console.log(error);
+		});
 
 	// Helper functions
 	function showToastMessage (sMessage) {
@@ -77,15 +90,15 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		vm.category = '';
 	}
 
-	classifiedFactory
-		.getClassifieds()
-		.then(function (responce) {
-			vm.classifieds = responce.data;
-			vm.categories = getCategories(vm.classifieds);
-		})
-		.catch(function (error) {
-			console.error(error.message);
-		});
+	// classifiedFactory
+	// 	.getClassifieds()
+	// 	.then(function (responce) {
+	// 		vm.classifieds = responce.data;
+	// 		vm.categories = getCategories(vm.classifieds);
+	// 	})
+	// 	.catch(function (error) {
+	// 		console.error(error.message);
+	// 	});
 
 	$scope.$on('newClassified', (event, data) => {
 		saveClassified(data);

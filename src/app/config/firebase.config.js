@@ -3,7 +3,7 @@ var config = {
 	apiKey: "AIzaSyB7F5MQ2hZZP4AvuigMmZcZB1xBKLWY-Uo",
 	authDomain: "classifieds-f3ac4.firebaseapp.com",
 	databaseURL: "https://classifieds-f3ac4.firebaseio.com",
-	storageBucket: "",
+	storageBucket: "gs://classifieds-f3ac4.appspot.com/",
 	messagingSenderId: "538924886704"
 };
 
