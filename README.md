@@ -15,4 +15,4 @@ Next run the server
 $ npm run serve
 ```
 
-Then open this url in your favorite browser (http://localhost:3000/)
+Then open this url in your favorite browser [http://localhost:3000/](http://localhost:3000/)
