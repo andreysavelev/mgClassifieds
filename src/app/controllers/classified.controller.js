@@ -1,6 +1,6 @@
 var _ = require('lodash');
 
-function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, classifiedFactory) {
+function ClassifiedController($scope, $state, $http, $mdSidenav, $mdDialog, $mdToast, classifiedFactory) {
 	var vm = this;
 
 	var oFakeContact = {
@@ -78,9 +78,19 @@ function ClassifiedController($scope, $state, $http, $mdSidenav, $mdToast, class
 		showToastMessage('Edited classified saved');
 	}
 
-	function deleteClassified(classified) {
-		var nIndex = vm.classifieds.indexOf(classified);
-		vm.classifieds.splice(nIndex, 1);
+	function deleteClassified(event, classified) {
+		var confirm = $mdDialog.confirm()
+			.title(`Are you shure you want to delete ${classified.title}?`)
+			.ok('Yes')
+			.cancel('No')
+			.targetEvent(event);
+		$mdDialog.show(confirm).then(() => {
+			vm.classifieds.$remove(classified).then(() => {
+				showToastMessage('Classified deleted!');
+			});
+		}).catch((error) => {
+			showToastMessage('Classified wasn\'t deleted!');
+		})
 	}
 
 	function toggleFilters() {
